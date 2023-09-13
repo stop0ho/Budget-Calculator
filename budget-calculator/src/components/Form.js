@@ -19,7 +19,7 @@ const Form = ({ name, amount, handleName, handleAmount, handleOnclick }) => {
             onBlur={() => setIsNameClicked(false)}
             placeholder={isNameClicked === true ? '' : '예) 렌트비'}
             required
-          ></input>
+          />
         </div>
         <div>
           <div>비용</div>
@@ -32,7 +32,7 @@ const Form = ({ name, amount, handleName, handleAmount, handleOnclick }) => {
             onBlur={() => setIsAmountClicked(false)}
             placeholder={isAmountClicked === true ? '' : '0'}
             type='number'
-          ></input>
+          />
         </div>
       </div>
       <button onClick={handleOnclick}>제출</button>
