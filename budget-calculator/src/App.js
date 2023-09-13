@@ -44,7 +44,11 @@ function App() {
         handleAmount={handleAmount}
         handleOnclick={handleOnclick}
       />
-      <Lists budget={budget} handleDeleteBtn={handleDeleteBtn} />
+      <Lists
+        budget={budget}
+        handleDeleteBtn={handleDeleteBtn}
+        setBudget={setBudget}
+      />
     </div>
   );
 }
