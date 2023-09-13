@@ -1,16 +1,25 @@
 import { useState } from 'react';
 import './App.css';
 import Form from './components/Form.js';
+import Lists from './components/Lists';
 
 function App() {
   const [name, setName] = useState('');
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState(0);
+  const [budget, setBudget] = useState([]);
 
   const handleOnclick = (e) => {
-    e.preventDefault();
     console.log(name, amount);
+    const newItem = {
+      id: Date.now(),
+      name: name !== '' ? name : '이름 없음',
+      amount: amount,
+    };
+    setBudget((prev) => [...prev, newItem]);
+
     setName('');
-    setAmount('');
+    setAmount(0);
+    console.log('아이템이 생성되었습니다');
   };
 
   const handleName = (e) => {
@@ -19,6 +28,11 @@ function App() {
 
   const handleAmount = (e) => {
     setAmount(e.target.value);
+  };
+
+  const handleDeleteBtn = (id) => {
+    let newBudget = budget.filter((data) => data.id !== id);
+    setBudget(newBudget);
   };
   return (
     <div>
@@ -30,6 +44,7 @@ function App() {
         handleAmount={handleAmount}
         handleOnclick={handleOnclick}
       />
+      <Lists budget={budget} handleDeleteBtn={handleDeleteBtn} />
     </div>
   );
 }
