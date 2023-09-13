@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import '../styles/Form.css';
 
 const Form = ({ name, amount, handleName, handleAmount, handleOnclick }) => {
   const [isNameClicked, setIsNameClicked] = useState(false);
   const [isAmountClicked, setIsAmountClicked] = useState(false);
 
   return (
-    <>
-      <div>
-        <div>
+    <div>
+      <div className='form-container'>
+        <div className='form-left-container'>
           <div>지출 항목</div>
           <input
             type='text'
@@ -21,7 +22,7 @@ const Form = ({ name, amount, handleName, handleAmount, handleOnclick }) => {
             required
           />
         </div>
-        <div>
+        <div className='form-right-container'>
           <div>비용</div>
           <input
             onChange={handleAmount}
@@ -35,8 +36,10 @@ const Form = ({ name, amount, handleName, handleAmount, handleOnclick }) => {
           />
         </div>
       </div>
-      <button onClick={handleOnclick}>제출</button>
-    </>
+      <button onClick={handleOnclick} className='btn-submit'>
+        추가
+      </button>
+    </div>
   );
 };
 

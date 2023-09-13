@@ -1,5 +1,6 @@
 import React from 'react';
 import List from './List';
+import '../styles/Lists.css';
 
 export default function Lists({ budget, handleDeleteBtn, setBudget }) {
   return (
@@ -14,7 +15,9 @@ export default function Lists({ budget, handleDeleteBtn, setBudget }) {
         />
       ))}
       <div>
-        <button onClick={() => setBudget([])}>목록 지우기</button>
+        <button onClick={() => setBudget([])} className='btn-delete'>
+          목록 지우기
+        </button>
       </div>
     </div>
   );

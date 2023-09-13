@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import './App.css';
+import './styles/App.css';
+
 import Form from './components/Form.js';
 import Lists from './components/Lists';
 import Sum from './components/Sum';
@@ -10,7 +11,6 @@ function App() {
   const [budget, setBudget] = useState([]);
 
   const handleOnclick = (e) => {
-    console.log(name, amount);
     const newItem = {
       id: Date.now(),
       name: name !== '' ? name : '이름 없음',
@@ -20,7 +20,6 @@ function App() {
 
     setName('');
     setAmount(0);
-    console.log('아이템이 생성되었습니다');
   };
 
   const handleName = (e) => {
@@ -35,21 +34,24 @@ function App() {
     let newBudget = budget.filter((data) => data.id !== id);
     setBudget(newBudget);
   };
+
   return (
-    <div>
+    <div className='main-container'>
       <h1>예산 계산기</h1>
-      <Form
-        name={name}
-        amount={amount}
-        handleName={handleName}
-        handleAmount={handleAmount}
-        handleOnclick={handleOnclick}
-      />
-      <Lists
-        budget={budget}
-        handleDeleteBtn={handleDeleteBtn}
-        setBudget={setBudget}
-      />
+      <div className='sub-container'>
+        <Form
+          name={name}
+          amount={amount}
+          handleName={handleName}
+          handleAmount={handleAmount}
+          handleOnclick={handleOnclick}
+        />
+        <Lists
+          budget={budget}
+          handleDeleteBtn={handleDeleteBtn}
+          setBudget={setBudget}
+        />
+      </div>
       <Sum budget={budget} />
     </div>
   );
