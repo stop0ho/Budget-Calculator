@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import Form from './components/Form.js';
 import Lists from './components/Lists';
+import Sum from './components/Sum';
 
 function App() {
   const [name, setName] = useState('');
@@ -49,6 +50,7 @@ function App() {
         handleDeleteBtn={handleDeleteBtn}
         setBudget={setBudget}
       />
+      <Sum budget={budget} />
     </div>
   );
 }
