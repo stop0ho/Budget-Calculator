@@ -1,2 +1,3 @@
 # Budget-Calculator
-리액트를 이용해서 CRUD 앱 만들기 | Create/Read/Update/Delete
+
+![image](https://github.com/stop0ho/Budget-Calculator/assets/68852637/00206dcf-f69b-431b-84ae-3134668d1a9b)
