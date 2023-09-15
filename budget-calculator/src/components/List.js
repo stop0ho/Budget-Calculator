@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/List.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function List({ item, handleDeleteBtn, budget, setBudget }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -8,6 +10,10 @@ export default function List({ item, handleDeleteBtn, budget, setBudget }) {
   const [isNameClicked, setIsNameClicked] = useState(false);
   const [isAmountClicked, setIsAmountClicked] = useState(false);
 
+  const info = () =>
+    toast.info('항목을 편집했습니다.', { position: 'top-right' });
+  const error = () =>
+    toast.error('항목을 삭제했습니다.', { position: 'top-right' });
   const handleEditBtn = (e) => {
     let newBudget = budget.map((data) => {
       if (item.id === data.id) {
@@ -25,6 +31,7 @@ export default function List({ item, handleDeleteBtn, budget, setBudget }) {
   if (isEditing === true) {
     return (
       <div key={item.id} className='list-container'>
+        <ToastContainer />
         <div className='left-section'>
           <input
             className='input-correction'
@@ -51,8 +58,22 @@ export default function List({ item, handleDeleteBtn, budget, setBudget }) {
           />
         </div>
         <div className='right-section'>
-          <button onClick={handleEditBtn}>✏️</button>
-          <button onClick={() => handleDeleteBtn(item.id)}>❌</button>
+          <button
+            onClick={() => {
+              handleEditBtn();
+              info();
+            }}
+          >
+            ✏️
+          </button>
+          <button
+            onClick={() => {
+              handleDeleteBtn(item.id);
+              error();
+            }}
+          >
+            ❌
+          </button>
         </div>
       </div>
     );
@@ -65,7 +86,14 @@ export default function List({ item, handleDeleteBtn, budget, setBudget }) {
         </div>
         <div className='right-section'>
           <button onClick={() => setIsEditing(true)}>✏️</button>
-          <button onClick={() => handleDeleteBtn(item.id)}>❌</button>
+          <button
+            onClick={() => {
+              handleDeleteBtn(item.id);
+              error();
+            }}
+          >
+            ❌
+          </button>
         </div>
       </div>
     );

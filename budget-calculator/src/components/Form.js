@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import '../styles/Form.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Form = ({ name, amount, handleName, handleAmount, handleOnclick }) => {
   const [isNameClicked, setIsNameClicked] = useState(false);
   const [isAmountClicked, setIsAmountClicked] = useState(false);
+
+  const success = () =>
+    toast.success('항목을 추가했습니다.', { position: 'top-right' });
 
   return (
     <div>
@@ -36,9 +41,16 @@ const Form = ({ name, amount, handleName, handleAmount, handleOnclick }) => {
           />
         </div>
       </div>
-      <button onClick={handleOnclick} className='btn-submit'>
+      <button
+        onClick={() => {
+          handleOnclick();
+          success();
+        }}
+        className='btn-submit'
+      >
         추가
       </button>
+      <ToastContainer />
     </div>
   );
 };
