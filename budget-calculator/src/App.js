@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './styles/App.css';
 
 import Form from './components/Form.js';
@@ -6,10 +6,17 @@ import Lists from './components/Lists';
 import Sum from './components/Sum';
 
 function App() {
+  const initialData = localStorage.getItem('budget')
+    ? JSON.parse(localStorage.getItem('budget'))
+    : [];
+
   const [name, setName] = useState('');
   const [amount, setAmount] = useState(0);
-  const [budget, setBudget] = useState([]);
+  const [budget, setBudget] = useState(initialData);
 
+  useEffect(() => {
+    localStorage.setItem('budget', JSON.stringify(budget));
+  }, [budget]);
   const handleOnclick = (e) => {
     const newItem = {
       id: Date.now(),
@@ -17,7 +24,6 @@ function App() {
       amount: amount,
     };
     setBudget((prev) => [...prev, newItem]);
-
     setName('');
     setAmount(0);
   };
@@ -33,6 +39,7 @@ function App() {
   const handleDeleteBtn = (id) => {
     let newBudget = budget.filter((data) => data.id !== id);
     setBudget(newBudget);
+    localStorage.setItem('budget', JSON.stringify(budget));
   };
 
   return (
